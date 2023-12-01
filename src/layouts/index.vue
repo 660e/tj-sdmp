@@ -20,9 +20,16 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
     </q-header>
     <q-drawer v-model="drawer" bordered show-if-above>
       <q-list>
-        <q-item v-for="r in routes" :key="r.name" :to="{ name: r.name }" clickable v-ripple>
-          <q-item-section class="text-base text-right">{{ r.meta?.name }}</q-item-section>
-        </q-item>
+        <template v-for="r in routes" :key="r.name">
+          <q-item v-if="!r.children?.length" :to="{ name: r.name }" clickable v-ripple>
+            <q-item-section>{{ r.meta?.name }}</q-item-section>
+          </q-item>
+          <q-expansion-item v-else :label="r.meta?.name">
+            <q-item v-for="s in r.children" :key="s.name" :to="{ name: s.name }" clickable v-ripple>
+              <q-item-section>{{ s.meta?.name }}</q-item-section>
+            </q-item>
+          </q-expansion-item>
+        </template>
       </q-list>
     </q-drawer>
     <q-page-container>
