@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { routes } from '@/router';
 
 defineOptions({ name: 'app-layout' });
 
@@ -18,7 +19,11 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
       </q-toolbar>
     </q-header>
     <q-drawer v-model="drawer" bordered show-if-above>
-      <div>drawer</div>
+      <q-list>
+        <q-item v-for="r in routes" :key="r.name" :to="{ name: r.name }" clickable v-ripple>
+          <q-item-section class="text-base text-right">{{ r.meta?.name }}</q-item-section>
+        </q-item>
+      </q-list>
     </q-drawer>
     <q-page-container>
       <router-view v-slot="{ Component }">

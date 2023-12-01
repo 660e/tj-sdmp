@@ -4,17 +4,7 @@ import { createMemoryHistory, createRouter, createWebHashHistory, createWebHisto
 import dashboard from './modules/dashboard';
 import space from './modules/space';
 
-export const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    component: () => import('@/layouts/index.vue'),
-    children: [dashboard, space]
-  },
-  {
-    path: '/login',
-    component: () => import('@/pages/index.vue')
-  }
-];
+export const routes: RouteRecordRaw[] = [dashboard, space];
 
 export default route(() => {
   let createHistory;
@@ -29,7 +19,18 @@ export default route(() => {
 
   return createRouter({
     history: createHistory(process.env.VUE_ROUTER_BASE),
-    routes,
+    routes: [
+      {
+        path: '/',
+        redirect: 'dashboard',
+        component: () => import('@/layouts/index.vue'),
+        children: routes
+      },
+      {
+        path: '/login',
+        component: () => import('@/pages/index.vue')
+      }
+    ],
     scrollBehavior: () => ({ left: 0, top: 0 })
   });
 });
