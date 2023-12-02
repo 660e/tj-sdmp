@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineOptions({ name: 'app-dashboard' });
 </script>
 

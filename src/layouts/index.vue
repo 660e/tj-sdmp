@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { routes } from '@/router';
 
@@ -22,10 +22,16 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
       <q-list>
         <template v-for="r in routes" :key="r.name">
           <q-item v-if="!r.children?.length" :to="{ name: r.name }" clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="info_outline" />
+            </q-item-section>
             <q-item-section>{{ r.meta?.name }}</q-item-section>
           </q-item>
-          <q-expansion-item v-else :label="r.meta?.name">
+          <q-expansion-item v-else :label="r.meta?.name" icon="info_outline" default-opened>
             <q-item v-for="s in r.children" :key="s.name" :to="{ name: s.name }" clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon />
+              </q-item-section>
               <q-item-section>{{ s.meta?.name }}</q-item-section>
             </q-item>
           </q-expansion-item>
@@ -43,3 +49,12 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
     </q-page-container>
   </q-layout>
 </template>
+
+<style lang="scss" scoped>
+.q-item,
+.q-expansion-item {
+  ::v-deep(.q-item__section--avatar) {
+    min-width: auto;
+  }
+}
+</style>
