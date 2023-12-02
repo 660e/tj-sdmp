@@ -18,7 +18,7 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
         <q-toolbar-title></q-toolbar-title>
       </q-toolbar>
     </q-header>
-    <q-drawer v-model="drawer" bordered show-if-above>
+    <q-drawer v-model="drawer" :width="200" bordered show-if-above>
       <q-list>
         <template v-for="r in routes" :key="r.name">
           <q-item v-if="!r.children?.length" :to="{ name: r.name }" clickable v-ripple>
