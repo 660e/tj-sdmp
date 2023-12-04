@@ -9,7 +9,7 @@ defineOptions({ name: 'app-dashboard' });
 </script>
 
 <template>
-  <div class="p-4 space-y-4">
+  <div class="p-4 space-y-4 overflow-x-hidden">
     <data-entirety />
     <div class="flex space-x-4">
       <device-status class="flex-1" />
