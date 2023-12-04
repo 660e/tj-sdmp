@@ -1,10 +1,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { routes } from '@/router';
+import { useGlobalStore } from '@/stores/example-store';
 
 defineOptions({ name: 'app-layout' });
 
-const drawer = ref(false);
+const $store = useGlobalStore();
+
+const opened = ref($store.opened);
+const toggle = () => ($store.opened = opened.value);
 
 const tweak = (offset: number, height: number) => ({ height: `${height - offset}px` });
 </script>
@@ -14,11 +18,11 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
     <q-ajax-bar />
     <q-header>
       <q-toolbar>
-        <q-btn @click="drawer = !drawer" icon="menu" dense flat round />
+        <q-btn @click="opened = !opened" icon="menu" dense flat round />
         <q-toolbar-title></q-toolbar-title>
       </q-toolbar>
     </q-header>
-    <q-drawer v-model="drawer" :width="200" bordered show-if-above>
+    <q-drawer v-model="opened" :width="200" @hide="toggle" @show="toggle" bordered>
       <q-list>
         <template v-for="r in routes" :key="r.name">
           <q-item v-if="!r.children?.length" :to="{ name: r.name }" clickable v-ripple>

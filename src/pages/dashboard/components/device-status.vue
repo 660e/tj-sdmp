@@ -1,8 +1,16 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
+import { useGlobalStore } from '@/stores/example-store';
 import { Chart } from '@antv/g2';
 
+const $store = useGlobalStore();
+
 let chart: Chart;
+
+watch(
+  () => $store.opened,
+  () => chart.forceFit()
+);
 
 onMounted(() => {
   chart = new Chart({ container: 'container' });
@@ -30,7 +38,7 @@ onMounted(() => {
 
 <template>
   <div class="border border-gray-200 rounded w-0">
-    <div class="leading-10 py-1 px-4" @click="chart.forceFit()">设备状态统计</div>
+    <div class="leading-10 py-1 px-4">设备状态统计</div>
     <div class="bg-red-50" id="container"></div>
   </div>
 </template>
