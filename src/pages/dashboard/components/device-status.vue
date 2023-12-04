@@ -13,11 +13,11 @@ watch(
 );
 
 onMounted(() => {
-  chart = new Chart({ container: 'container' });
+  chart = new Chart({ container: 'device-status' });
   chart.options({
     type: 'interval',
-    autoFit: true,
     height: 300,
+    autoFit: true,
     data: [
       { id: 'c', value: 526 },
       { id: 'sass', value: 220 },
@@ -39,6 +39,6 @@ onMounted(() => {
 <template>
   <div class="border border-gray-200 rounded w-0">
     <div class="leading-10 py-1 px-4">设备状态统计</div>
-    <div class="bg-red-50" id="container"></div>
+    <div class="bg-red-50" id="device-status"></div>
   </div>
 </template>

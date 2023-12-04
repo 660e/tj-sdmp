@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import DataEntirety from './components/data-entirety.vue';
+
 import DeviceStatus from './components/device-status.vue';
+import DeviceTrends from './components/device-trends.vue';
 
 defineOptions({ name: 'app-dashboard' });
 </script>
@@ -10,7 +12,7 @@ defineOptions({ name: 'app-dashboard' });
     <data-entirety />
     <div class="flex space-x-4">
       <device-status class="flex-1" />
-      <div class="flex-2 border border-gray-300 rounded">2</div>
+      <device-trends class="flex-2" />
       <div class="flex-1 border border-gray-300 rounded">3</div>
     </div>
   </div>
