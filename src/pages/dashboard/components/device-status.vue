@@ -16,8 +16,8 @@ onMounted(() => {
   chart = new Chart({ container: 'device-status' });
   chart.options({
     type: 'interval',
-    height: 300,
     autoFit: true,
+    height: 300,
     data: [
       { id: 'c', value: 526 },
       { id: 'sass', value: 220 },

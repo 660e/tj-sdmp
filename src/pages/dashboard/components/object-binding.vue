@@ -13,16 +13,17 @@ watch(
 );
 
 onMounted(() => {
-  chart = new Chart({ container: 'device-trends' });
+  chart = new Chart({ container: 'object-binding' });
   chart.options({
-    type: 'line',
+    type: 'interval',
     autoFit: true,
     height: 300,
     data: {
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/bmw-prod/551d80c6-a6be-4f3c-a82a-abd739e12977.csv'
+      value: 'https://gw.alipayobjects.com/os/bmw-prod/fb9db6b7-23a5-4c23-bbef-c54a55fee580.csv'
     },
-    encode: { x: 'date', y: 'close' }
+    encode: { x: 'letter', y: 'frequency' },
+    axis: { y: { labelFormatter: '.0%' } }
   });
   chart.render();
 });
@@ -30,7 +31,9 @@ onMounted(() => {
 
 <template>
   <div class="border border-gray-200 rounded w-0">
-    <div class="leading-10 py-1 px-4">设备趋势图</div>
-    <div class="bg-red-50" id="device-trends"></div>
+    <div class="leading-10 py-1 px-4">
+      <span>对象绑定状态</span>
+    </div>
+    <div class="bg-red-50" id="object-binding"></div>
   </div>
 </template>

@@ -3,6 +3,7 @@ import DataEntirety from './components/data-entirety.vue';
 
 import DeviceStatus from './components/device-status.vue';
 import DeviceTrends from './components/device-trends.vue';
+import ObjectBinding from './components/object-binding.vue';
 
 defineOptions({ name: 'app-dashboard' });
 </script>
@@ -13,7 +14,7 @@ defineOptions({ name: 'app-dashboard' });
     <div class="flex space-x-4">
       <device-status class="flex-1" />
       <device-trends class="flex-2" />
-      <div class="flex-1 border border-gray-300 rounded">3</div>
+      <object-binding class="flex-1" />
     </div>
   </div>
 </template>
