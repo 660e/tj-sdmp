@@ -30,7 +30,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="border border-gray-200 rounded w-0">
+  <div class="border border-gray-200 rounded">
     <div class="leading-10 pl-4">协议管理</div>
     <div class="bg-red-50" id="protocol-management"></div>
   </div>

@@ -37,7 +37,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="border border-gray-200 rounded w-0">
+  <div class="border border-gray-200 rounded">
     <div class="leading-10 pl-4">设备状态统计</div>
     <div class="bg-red-50" id="device-status"></div>
   </div>

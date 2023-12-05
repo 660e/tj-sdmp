@@ -13,22 +13,11 @@ defineOptions({ name: 'app-dashboard' });
 <template>
   <div class="p-4 space-y-4 overflow-x-hidden">
     <data-entirety />
-    <div class="flex space-x-4">
-      <device-status class="flex-1" />
-      <device-trends class="flex-2" />
-      <object-binding class="flex-1" />
-    </div>
-    <div class="flex space-x-4">
-      <protocol-management class="flex-1" />
-      <div class="flex-1"></div>
-      <div class="flex-1"></div>
-      <div class="flex-1"></div>
+    <div class="grid grid-cols-4 gap-4">
+      <device-status />
+      <device-trends class="col-span-2" />
+      <object-binding />
+      <protocol-management />
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.flex-2 {
-  flex: 2;
-}
-</style>
