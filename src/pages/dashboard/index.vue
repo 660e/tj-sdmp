@@ -6,12 +6,13 @@ import deviceTrends from './components/device-trends.vue';
 import objectBinding from './components/object-binding.vue';
 
 import protocolManagement from './components/protocol-management.vue';
-
+import apiManagement from './components/api-management.vue';
 import projectSpace from './components/project-space.vue';
 import assignCode from './components/assign-code.vue';
 
 import serviceUsage from './components/service-usage.vue';
 import serviceCount from './components/service-count.vue';
+import operationMonitoring from './components/operation-monitoring.vue';
 
 defineOptions({ name: 'app-dashboard' });
 </script>
@@ -25,12 +26,13 @@ defineOptions({ name: 'app-dashboard' });
       <object-binding />
 
       <protocol-management />
-      <div></div>
+      <api-management />
       <project-space />
       <assign-code />
 
       <service-usage class="col-span-2" />
       <service-count />
+      <operation-monitoring />
     </div>
   </div>
 </template>
