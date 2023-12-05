@@ -5,6 +5,8 @@ import DeviceStatus from './components/device-status.vue';
 import DeviceTrends from './components/device-trends.vue';
 import ObjectBinding from './components/object-binding.vue';
 
+import ProtocolManagement from './components/protocol-management.vue';
+
 defineOptions({ name: 'app-dashboard' });
 </script>
 
@@ -15,6 +17,12 @@ defineOptions({ name: 'app-dashboard' });
       <device-status class="flex-1" />
       <device-trends class="flex-2" />
       <object-binding class="flex-1" />
+    </div>
+    <div class="flex space-x-4">
+      <protocol-management class="flex-1" />
+      <div class="flex-1"></div>
+      <div class="flex-1"></div>
+      <div class="flex-1"></div>
     </div>
   </div>
 </template>
