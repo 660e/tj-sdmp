@@ -1,11 +1,17 @@
 <script lang="ts" setup>
-import DataEntirety from './components/data-entirety.vue';
+import dataEntirety from './components/data-entirety.vue';
 
-import DeviceStatus from './components/device-status.vue';
-import DeviceTrends from './components/device-trends.vue';
-import ObjectBinding from './components/object-binding.vue';
+import deviceStatus from './components/device-status.vue';
+import deviceTrends from './components/device-trends.vue';
+import objectBinding from './components/object-binding.vue';
 
-import ProtocolManagement from './components/protocol-management.vue';
+import protocolManagement from './components/protocol-management.vue';
+
+import projectSpace from './components/project-space.vue';
+import assignCode from './components/assign-code.vue';
+
+import serviceUsage from './components/service-usage.vue';
+import serviceCount from './components/service-count.vue';
 
 defineOptions({ name: 'app-dashboard' });
 </script>
@@ -17,7 +23,14 @@ defineOptions({ name: 'app-dashboard' });
       <device-status />
       <device-trends class="col-span-2" />
       <object-binding />
+
       <protocol-management />
+      <div></div>
+      <project-space />
+      <assign-code />
+
+      <service-usage class="col-span-2" />
+      <service-count />
     </div>
   </div>
 </template>

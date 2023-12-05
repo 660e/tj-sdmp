@@ -13,7 +13,7 @@ watch(
 );
 
 onMounted(() => {
-  chart = new Chart({ container: 'device-status' });
+  chart = new Chart({ container: 'assign-code' });
   chart.options({
     type: 'interval',
     autoFit: true,
@@ -27,7 +27,7 @@ onMounted(() => {
     ],
     encode: { y: 'value', color: 'id' },
     transform: [{ type: 'stackY' }],
-    coordinate: { type: 'theta', outerRadius: 0.7 },
+    coordinate: { type: 'theta', innerRadius: 0.3, outerRadius: 0.7 },
     style: { radius: 4, stroke: '#fff', lineWidth: 1 },
     animate: { enter: { type: 'waveIn' } },
     labels: [{ text: 'value', position: 'spider' }]
@@ -38,7 +38,7 @@ onMounted(() => {
 
 <template>
   <div class="border border-gray-200 rounded">
-    <div class="leading-10 pl-4">设备状态统计</div>
-    <div class="bg-red-50" id="device-status"></div>
+    <div class="leading-10 pl-4">设备赋码统计</div>
+    <div class="bg-red-50" id="assign-code"></div>
   </div>
 </template>
