@@ -30,7 +30,7 @@ onMounted(() => {
 
 <template>
   <div class="border border-gray-200 rounded w-0">
-    <div class="leading-10 py-1 px-4">设备趋势图</div>
+    <div class="leading-10 pl-4">设备趋势图</div>
     <div class="bg-red-50" id="device-trends"></div>
   </div>
 </template>
