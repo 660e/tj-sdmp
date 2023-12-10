@@ -1,16 +1,26 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { routes } from '@/router';
 import { useGlobalStore } from '@/stores/example-store';
+
+import { Breadcrumb } from './models';
 
 defineOptions({ name: 'app-layout' });
 
 const $store = useGlobalStore();
+const $route = useRoute();
 
 const opened = ref($store.opened);
 const toggle = () => ($store.opened = opened.value);
 
 const tweak = (offset: number, height: number) => ({ height: `${height - offset}px` });
+
+const breadcrumbs = ref<Breadcrumb[]>();
+
+console.log($route.name);
+console.log(routes);
+console.log(breadcrumbs.value);
 </script>
 
 <template>
@@ -29,14 +39,14 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
             <q-item-section avatar>
               <q-icon name="info_outline" />
             </q-item-section>
-            <q-item-section>{{ r.meta?.name }}</q-item-section>
+            <q-item-section>{{ r.meta?.title }}</q-item-section>
           </q-item>
-          <q-expansion-item v-else :label="r.meta?.name" icon="info_outline" default-opened>
+          <q-expansion-item v-else :label="r.meta?.title" icon="info_outline" default-opened>
             <q-item v-for="s in r.children" :key="s.name" :to="{ name: s.name }" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon />
               </q-item-section>
-              <q-item-section>{{ s.meta?.name }}</q-item-section>
+              <q-item-section>{{ s.meta?.title }}</q-item-section>
             </q-item>
           </q-expansion-item>
         </template>
@@ -46,6 +56,15 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
       <router-view v-slot="{ Component }">
         <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
           <q-page :style-fn="tweak" class="overflow-auto">
+            <q-breadcrumbs class="pt-4 px-4">
+              <q-breadcrumbs-el label="Home" />
+              <q-breadcrumbs-el label="Components" />
+              <q-breadcrumbs-el label="Breadcrumbs" />
+            </q-breadcrumbs>
+            <h1 class="leading-none pt-4 px-4 flex">
+              <b class="w-1 bg-blue-500 mr-2"></b>
+              <span class="text-lg">{{ $route.meta.title }}</span>
+            </h1>
             <component :is="Component" />
           </q-page>
         </transition>
