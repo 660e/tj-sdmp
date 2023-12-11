@@ -1,4 +1,6 @@
+import type { RouteRecordName } from 'vue-router';
+
 export interface Breadcrumb {
   title: string;
-  name: string;
+  name: RouteRecordName;
 }

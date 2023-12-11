@@ -1,26 +1,34 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { routes } from '@/router';
 import { useGlobalStore } from '@/stores/example-store';
 
-import { Breadcrumb } from './models';
+import type { RouteRecordName, RouteRecordRaw } from 'vue-router';
+import type { Breadcrumb } from './models';
 
 defineOptions({ name: 'app-layout' });
 
 const $store = useGlobalStore();
-const $route = useRoute();
-
 const opened = ref($store.opened);
 const toggle = () => ($store.opened = opened.value);
 
+const $route = useRoute();
+const findPath = (nodes: RouteRecordRaw[], target: RouteRecordName | null | undefined, current: Breadcrumb[] = []): Breadcrumb[] => {
+  for (const node of nodes) {
+    const path = [...current, { title: node.meta?.title || '-', name: node.name || '-' }];
+    if (node.name === target) return path;
+    if (node.children?.length) return findPath(node.children, target, path);
+  }
+  return [];
+};
+const breadcrumbs = ref();
+watchEffect(() => {
+  breadcrumbs.value = findPath(routes, $route.name);
+  console.log(breadcrumbs.value);
+});
+
 const tweak = (offset: number, height: number) => ({ height: `${height - offset}px` });
-
-const breadcrumbs = ref<Breadcrumb[]>();
-
-console.log($route.name);
-console.log(routes);
-console.log(breadcrumbs.value);
 </script>
 
 <template>
