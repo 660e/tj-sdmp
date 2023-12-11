@@ -14,7 +14,7 @@ const opened = ref($store.opened);
 const toggle = () => ($store.opened = opened.value);
 
 const $route = useRoute();
-const findPath = (nodes: RouteRecordRaw[], target: RouteRecordName | null | undefined, current: Breadcrumb[] = []): Breadcrumb[] => {
+const findPath = (nodes: RouteRecordRaw[], target: RouteRecordName, current: Breadcrumb[] = []): Breadcrumb[] => {
   for (const node of nodes) {
     const path = [...current, { title: node.meta?.title || '-', name: node.name || '-' }];
     if (node.name === target) return path;
@@ -24,8 +24,7 @@ const findPath = (nodes: RouteRecordRaw[], target: RouteRecordName | null | unde
 };
 const breadcrumbs = ref();
 watchEffect(() => {
-  breadcrumbs.value = findPath(routes, $route.name);
-  console.log(breadcrumbs.value);
+  breadcrumbs.value = findPath(routes, $route.name || '');
 });
 
 const tweak = (offset: number, height: number) => ({ height: `${height - offset}px` });
@@ -65,9 +64,7 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
         <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" mode="out-in">
           <q-page :style-fn="tweak" class="overflow-auto">
             <q-breadcrumbs class="pt-4 px-4">
-              <q-breadcrumbs-el label="Home" />
-              <q-breadcrumbs-el label="Components" />
-              <q-breadcrumbs-el label="Breadcrumbs" />
+              <q-breadcrumbs-el v-for="breadcrumb in breadcrumbs" :key="breadcrumb.name" :label="breadcrumb.title" />
             </q-breadcrumbs>
             <h1 class="leading-none pt-4 px-4 flex">
               <b class="w-1 bg-blue-500 mr-2"></b>
