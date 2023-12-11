@@ -34,19 +34,19 @@ console.log(breadcrumbs.value);
     </q-header>
     <q-drawer v-model="opened" :width="200" @hide="toggle" @show="toggle" bordered>
       <q-list>
-        <template v-for="r in routes" :key="r.name">
-          <q-item v-if="!r.children?.length" :to="{ name: r.name }" clickable v-ripple>
+        <template v-for="_1st in routes" :key="_1st.name">
+          <q-item v-if="!_1st.children?.length" :to="{ name: _1st.name }" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="info_outline" />
             </q-item-section>
-            <q-item-section>{{ r.meta?.title }}</q-item-section>
+            <q-item-section>{{ _1st.meta?.title }}</q-item-section>
           </q-item>
-          <q-expansion-item v-else :label="r.meta?.title" icon="info_outline" default-opened>
-            <q-item v-for="s in r.children" :key="s.name" :to="{ name: s.name }" clickable v-ripple>
+          <q-expansion-item v-else :label="_1st.meta?.title" icon="info_outline" default-opened>
+            <q-item v-for="_2nd in _1st.children" :key="_2nd.name" :to="{ name: _2nd.name }" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon />
               </q-item-section>
-              <q-item-section>{{ s.meta?.title }}</q-item-section>
+              <q-item-section>{{ _2nd.meta?.title }}</q-item-section>
             </q-item>
           </q-expansion-item>
         </template>
