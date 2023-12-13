@@ -10,8 +10,10 @@ import type { Breadcrumb } from './models';
 defineOptions({ name: 'app-layout' });
 
 const $store = useGlobalStore();
-const opened = ref($store.opened);
-const toggle = () => ($store.opened = opened.value);
+const toggle = () => {
+  $store.drawer = !$store.drawer;
+  window.dispatchEvent(new Event('resize'));
+};
 
 const $route = useRoute();
 const findPath = (nodes: RouteRecordRaw[], target: RouteRecordName, current: Breadcrumb[] = []): Breadcrumb[] => {
@@ -35,11 +37,11 @@ const tweak = (offset: number, height: number) => ({ height: `${height - offset}
     <q-ajax-bar />
     <q-header>
       <q-toolbar>
-        <q-btn @click="opened = !opened" icon="menu" dense flat round />
+        <q-btn @click="toggle" icon="menu" dense flat round />
         <q-toolbar-title></q-toolbar-title>
       </q-toolbar>
     </q-header>
-    <q-drawer v-model="opened" :width="200" @hide="toggle" @show="toggle" bordered>
+    <q-drawer v-model="$store.drawer" :width="200" bordered>
       <q-list>
         <template v-for="_1st in routes" :key="_1st.name">
           <q-item v-if="!_1st.children?.length" :to="{ name: _1st.name }" clickable v-ripple>
