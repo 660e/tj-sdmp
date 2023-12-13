@@ -18,7 +18,7 @@ defineOptions({ name: 'app-dashboard' });
 </script>
 
 <template>
-  <div class="p-4 space-y-4 overflow-x-hidden">
+  <div class="p-4 space-y-4">
     <data-entirety />
     <div class="grid grid-cols-4 gap-4">
       <device-status />

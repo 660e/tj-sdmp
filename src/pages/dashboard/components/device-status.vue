@@ -1,19 +1,9 @@
 <script lang="ts" setup>
-import { onMounted, watch } from 'vue';
-import { useGlobalStore } from '@/stores/example-store';
+import { onMounted } from 'vue';
 import { Chart } from '@antv/g2';
 
-const $store = useGlobalStore();
-
-let chart: Chart;
-
-watch(
-  () => $store.opened,
-  () => chart.forceFit()
-);
-
 onMounted(() => {
-  chart = new Chart({ container: 'device-status' });
+  const chart = new Chart({ container: 'device-status' });
   chart.options({
     type: 'interval',
     autoFit: true,
@@ -37,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="border border-gray-200 rounded">
+  <div class="border border-gray-200 rounded overflow-x-hidden">
     <div class="leading-10 pl-4">设备状态统计</div>
     <div class="bg-red-50" id="device-status"></div>
   </div>

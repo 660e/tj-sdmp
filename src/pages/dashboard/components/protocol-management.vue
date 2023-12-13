@@ -1,19 +1,9 @@
 <script lang="ts" setup>
-import { onMounted, watch } from 'vue';
-import { useGlobalStore } from '@/stores/example-store';
+import { onMounted } from 'vue';
 import { Chart } from '@antv/g2';
 
-const $store = useGlobalStore();
-
-let chart: Chart;
-
-watch(
-  () => $store.opened,
-  () => chart.forceFit()
-);
-
 onMounted(() => {
-  chart = new Chart({ container: 'protocol-management' });
+  const chart = new Chart({ container: 'protocol-management' });
   chart.options({
     type: 'interval',
     autoFit: true,
@@ -30,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="border border-gray-200 rounded">
+  <div class="border border-gray-200 rounded overflow-x-hidden">
     <div class="leading-10 pl-4">协议管理</div>
     <div class="bg-red-50" id="protocol-management"></div>
   </div>
